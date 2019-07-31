@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RoATracker_Example' do
+  pod 'RoATracker', :path => '../'
+
+  target 'RoATracker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
