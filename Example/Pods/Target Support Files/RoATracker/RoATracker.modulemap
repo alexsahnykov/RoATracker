@@ -1,0 +1,6 @@
+framework module RoATracker {
+  umbrella header "RoATracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
