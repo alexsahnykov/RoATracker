@@ -5,7 +5,12 @@
 //  Created by Александр Сахнюков on 01/08/2019.
 //
 
-class AFTracker : RoATracker {
+class AFTracker: NSObject, RoATracker {
+  
+    func purchase() {
+        
+    }
+    
     
     func install() {
         print("AFTracker")

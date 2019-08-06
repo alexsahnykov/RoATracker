@@ -6,23 +6,36 @@
 //
 import FBSDKCoreKit
 
-public class RoAFBTracker : RoATracker {
+public class RoAFBTracker: NSObject, RoATracker  {
+   
+    public func purchase() {
+        AppEvents.logPurchase(21, currency: "Dollar")
+    }
+    
     
     public func install() {
-        
+        print("FB install")
     }
     
-    func setupFBDelegate(_ aplication: UIApplication, open: URL, options: [UIApplication.OpenURLOptionsKey : Any]) {
-        ApplicationDelegate.shared.application(aplication, open: open, options: options)
-    }
-    
-    func setupFBDelegate(_ aplication: UIApplication, options: [UIApplication.LaunchOptionsKey : Any]?) {
-        ApplicationDelegate.shared.application(aplication, didFinishLaunchingWithOptions: options)
-    }
-    
-    
-    init() {
+   public override init() {
         
     }
     
 }
+
+extension RoAFBTracker: UIApplicationDelegate {
+    
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool  {
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
+    }
+    
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        ApplicationDelegate.shared.application(app, open: url, options: options)
+        return true
+    }
+    
+}
+
+
+

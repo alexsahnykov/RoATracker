@@ -1,41 +1,27 @@
 PODS:
-  - FacebookSDK (5.3.0):
-    - FacebookSDK/CoreKit (= 5.3.0)
-    - FacebookSDK/MarketingKit (= 5.3.0)
-  - FacebookSDK/CoreKit (5.3.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookSDK/MarketingKit (5.3.0):
-    - FacebookSDK/CoreKit
-    - FBSDKMarketingKit (~> 5.0)
   - FBSDKCoreKit (5.0.0):
     - FBSDKCoreKit/Basics (= 5.0.0)
     - FBSDKCoreKit/Core (= 5.0.0)
   - FBSDKCoreKit/Basics (5.0.0)
   - FBSDKCoreKit/Core (5.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKMarketingKit (5.0.0):
-    - FBSDKCoreKit (= 5.0.0)
   - RoATracker (0.1.0):
-    - FacebookSDK
+    - FBSDKCoreKit
 
 DEPENDENCIES:
   - RoATracker (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - FacebookSDK
     - FBSDKCoreKit
-    - FBSDKMarketingKit
 
 EXTERNAL SOURCES:
   RoATracker:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FacebookSDK: 8b6f1bfe4ac4deed8cd2a00d772fad7997176dec
   FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
-  FBSDKMarketingKit: 4b8d3c6b53b5397cd0b6ba39b1e7034bc9f3a45e
-  RoATracker: 60ddab21ee3c38efaee17571f2fdd0bb2593dbf9
+  RoATracker: 4cd2fd5ec5c4e1e55395daab856739b967cbb856
 
 PODFILE CHECKSUM: 2dd9c4803bc90a31f6f9c63bce51374ad26a5d4c
 
