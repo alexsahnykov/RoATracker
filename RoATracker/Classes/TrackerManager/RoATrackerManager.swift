@@ -87,12 +87,11 @@ extension RoATrackerManager  {
 
 extension RoATrackerManager {
 
-    var url: URL? {
+   private var url: URL? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "trk.questmedia.ru"
         components.path = "/application/install"
-       // components.percentEncodedQuery = "%3D%7B={"
         components.queryItems = [
             URLQueryItem(name: "deeplink", value: "myapp://trk.questmedia.ru/deeplink/3477?campaign={campaign}"),
             URLQueryItem(name: "adset", value: "{adset}"),
