@@ -8,17 +8,22 @@ import FBSDKCoreKit
 
 public class RoAFBTracker: NSObject, RoATracker  {
    
+    public func createEvent(_ eventNmae: String) {
+        
+    }
+    
+   
     public func purchase() {
         AppEvents.logPurchase(21, currency: "Dollar")
+    }
+    
+    public func registerTracker(_ deeplink: NSURL? = nil) {
+        
     }
     
     
     public func install() {
         print("FB install")
-    }
-    
-   public override init() {
-        
     }
     
 }

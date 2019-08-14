@@ -11,5 +11,9 @@ public protocol RoATracker: UIApplicationDelegate {
     
     func purchase()
     
+    func registerTracker(_ deeplink: NSURL?)
+    
+    func createEvent(_ eventNmae: String)
+    
 }
 

@@ -6,11 +6,19 @@
 //
 
 class AFTracker: NSObject, RoATracker {
+   
+    func createEvent(_ eventNmae: String) {
+        
+    }
+    
+    func registerTracker(_ deeplink: NSURL? = nil) {
+        
+    }
+    
   
     func purchase() {
         
     }
-    
     
     func install() {
         print("AFTracker")
