@@ -30,8 +30,6 @@ public class RoAServerTracker: NSObject {
         
     }
     
-
-    
     private func getIdFromRoAServer(url: URL?, completion: @escaping (Result<String, Error>)-> ()) {
         guard let url = url else {return}
         let defaultSession = URLSession(configuration: .default)

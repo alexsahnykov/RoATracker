@@ -188,6 +188,7 @@
 		C10E94292301AD9000177EDC /* RoAServerTackerURLConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10E94282301AD9000177EDC /* RoAServerTackerURLConfigurator.swift */; };
 		C186BDAB2301B55600BCB395 /* RoAServerTackerURLConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10E94282301AD9000177EDC /* RoAServerTackerURLConfigurator.swift */; };
 		C186BDAD2304510B00BCB395 /* RoAExtInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186BDAC2304510B00BCB395 /* RoAExtInfoConfigurator.swift */; };
+		C186BDAE2304533800BCB395 /* RoAExtInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186BDAC2304510B00BCB395 /* RoAExtInfoConfigurator.swift */; };
 		C4D4CE570BB73A07D5E090960F4108C5 /* FBSDKErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E54E19F8753B6337F2249002B8C37C2 /* FBSDKErrorRecoveryAttempter.m */; };
 		C4D4D3000D2BA80B9EF1D8674BAA95CD /* FBSDKHybridAppEventsScriptMessageHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 694443073387536A5876226B69D4B915 /* FBSDKHybridAppEventsScriptMessageHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C8D94C4826166595F15F8EF6DBDAA091 /* FBSDKCodelessMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = D7B97DC942CE8EF919902598FD558A13 /* FBSDKCodelessMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -1301,6 +1302,7 @@
 				F71E929AB02E25C54CFB19ACF6BE8A94 /* TrackerManagerProtocol.swift in Sources */,
 				C186BDAB2301B55600BCB395 /* RoAServerTackerURLConfigurator.swift in Sources */,
 				B13E21EF9165CEF9D72FBC504156D590 /* TrackerProtocol.swift in Sources */,
+				C186BDAE2304533800BCB395 /* RoAExtInfoConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

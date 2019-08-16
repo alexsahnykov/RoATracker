@@ -33,6 +33,7 @@ public struct RoAExtInfoConfigurator {
     
     private let modelName: String = {
         var systemInfo = utsname()
+        uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let identifier = machineMirror.children.reduce("") { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
@@ -54,15 +55,42 @@ public struct RoAExtInfoConfigurator {
         return carrier
     }()
     
+    private var screenSize: String = {
+        let screen = UIScreen.main
+        let within =  Int(screen.bounds.width)
+        let height = Int(screen.bounds.height)
+        let scale = String(format: "%.02f", screen.scale)
+        print(scale)
+        return [String(within), String(height), scale].joined(separator: ",")
+    }()
+    
+    private var cpuCores = String(ProcessInfo.processInfo.processorCount)
+    
+    private var storageSize: String = {
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        guard
+            let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectory),
+            let freeSize = systemAttributes[.systemFreeSize] as? NSNumber,
+            let totalSize = systemAttributes[.systemSize] as? NSNumber
+            else {
+                return ""
+        }
+        let total = Int(truncating: totalSize) / (1024 * 1024 * 1024)
+        let free = Int(truncating: freeSize) / (1024 * 1024 * 1024)
+        return String(total) + "," + String(free)
+        
+    }()
     
     private let timeZone = NSTimeZone.system.identifier
+    
+    
     
     public func getExtInfo() -> String {
         return extInfoParamets.joined(separator: ",")
     }
     
-    init() {
-        let array:[String] = [extInfoVer, appPkgName, pkgVerCode, pkgInfoVerName, osVer, modelName, locale, devTimeZoneAbv, carrierName]
+    public init() {
+        let array:[String] = [extInfoVer, appPkgName, pkgVerCode, pkgInfoVerName, osVer, modelName, locale, devTimeZoneAbv, carrierName, screenSize, cpuCores, storageSize, timeZone]
         extInfoParamets = array
     }
     
