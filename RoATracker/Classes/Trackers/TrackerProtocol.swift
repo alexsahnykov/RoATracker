@@ -9,11 +9,11 @@ public protocol RoATracker: UIApplicationDelegate {
     
     func install()
     
-    func purchase()
+    func purchase(_ purchase: Purchase)
     
-    func registerTracker(_ deeplink: NSURL?)
+    func registerTracker(_ deeplink: String?)
     
-    func createEvent(_ eventNmae: String)
+    func createEvent(_ event: Eventable)
     
 }
 

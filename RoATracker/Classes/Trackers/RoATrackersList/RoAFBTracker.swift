@@ -7,40 +7,43 @@
 import FBSDKCoreKit
 
 public class RoAFBTracker: NSObject, RoATracker  {
-   
-    public func createEvent(_ eventNmae: String) {
+    
+    public func testCkic(_ event: AppEvents.Name) {
+        AppEvents.logEvent(event)
+    }
+    
+    public func createEvent(_ event: Eventable) {
+        AppEvents.logEvent(AppEvents.Name(rawValue: event.eventName), parameters: ["id": event.id])
+    }
+    
+    public func purchase(_ purchase: Purchase) {
+        guard let params = purchase.converToParams() else {
+            AppEvents.logPurchase(purchase.valueToSum, currency: purchase.currency)
+            return
+        }
+        AppEvents.logPurchase(purchase.valueToSum, currency: purchase.currency, parameters: params)
+    }
+    
+    public func registerTracker(_ deeplink: String? = nil) {
         
     }
-    
-   
-    public func purchase() {
-        AppEvents.logPurchase(21, currency: "Dollar")
-    }
-    
-    public func registerTracker(_ deeplink: NSURL? = nil) {
-        
-    }
-    
     
     public func install() {
-        print("FB install")
+        
     }
-    
 }
 
 extension RoAFBTracker: UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool  {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        Settings.isAutoLogAppEventsEnabled = false
         return true
     }
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         ApplicationDelegate.shared.application(app, open: url, options: options)
+        Settings.isAutoLogAppEventsEnabled = false
         return true
     }
-    
 }
-
-
-

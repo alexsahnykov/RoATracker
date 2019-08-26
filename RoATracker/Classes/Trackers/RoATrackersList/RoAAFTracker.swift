@@ -6,17 +6,16 @@
 //
 
 class AFTracker: NSObject, RoATracker {
-   
-    func createEvent(_ eventNmae: String) {
+    
+    func purchase(_ purchase: Purchase) {
         
     }
     
-    func registerTracker(_ deeplink: NSURL? = nil) {
+    func createEvent(_ event: Eventable) {
         
     }
     
-  
-    func purchase() {
+    func registerTracker(_ deeplink: String? = nil) {
         
     }
     
@@ -25,3 +24,4 @@ class AFTracker: NSObject, RoATracker {
     }
     
 }
+

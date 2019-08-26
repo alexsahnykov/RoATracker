@@ -7,30 +7,30 @@
 
 public class RoAServerTracker: NSObject {
     
-    private var serverId: String?
+    public var serverId: String?
     
-    private var urlConfigurator = RoAServerTackerURLConfigurator()
+    var deeplink: String?
     
-
+    private var urlConfigurator: RoAServerTrackerURLConfigurator
     
-    private func getServerId() {
+    public func getServerId() {
         guard serverId == nil else {
             print("already have ID")
             return
         }
-        getIdFromRoAServer(url: self.urlConfigurator.getUrl()) { (result: Result<String, Error>) in
+        getIdFromRoAServer(url: self.urlConfigurator.getUrl(deeplink: deeplink)) { (result: Result<String, Error>) in
             switch result {
             case .success(let id):
                 self.serverId = id
+                print(id)
                 UserDefaults.standard.set(id, forKey: "id")
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
-        
     }
     
-    private func getIdFromRoAServer(url: URL?, completion: @escaping (Result<String, Error>)-> ()) {
+    private func getIdFromRoAServer(url: URL?, completion: @escaping (Result<String, Error>) -> Void) {
         guard let url = url else {return}
         let defaultSession = URLSession(configuration: .default)
         var urlRequest = URLRequest(url: url)
@@ -42,8 +42,9 @@ public class RoAServerTracker: NSObject {
                 return
             }
             guard let data = data else { return}
+            print(data.base64EncodedString())
             do {
-                //let result = try JSONDecoder().decode(Responce.self, from: data)
+                //let result = try JSONDecoder().decode(RoAServerResponse.Self, from: data)
                 let str = String(decoding: data, as: UTF8.self)
                 completion(.success(str))
             } //catch let error {
@@ -53,27 +54,30 @@ public class RoAServerTracker: NSObject {
         }
         task.resume()
     }
+    public init(urlConfigurator: RoAServerTrackerURLConfigurator) {
+        self.urlConfigurator = urlConfigurator
+    }
     
 }
 
 extension RoAServerTracker: RoATracker {
-   
-    public func createEvent(_ eventNmae: String) {
+    
+    public func purchaseByPrice(_ price: Double) {
+    }
+    
+    
+    public func createEvent(_ event: Eventable) {
         
     }
     
-    public func purchase() {
+    public func purchase(_ purchase: Purchase) {
         
     }
     
     public func install() {
     }
     
-    public func registerTracker(_ deeplink: NSURL? = nil) {
-        self.urlConfigurator.deeplink = deeplink
+    public func registerTracker(_ deeplink: String? = nil) {
+        self.deeplink = deeplink
     }
-    
-  
-
-    
 }

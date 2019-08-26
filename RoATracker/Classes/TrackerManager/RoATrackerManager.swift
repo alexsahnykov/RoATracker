@@ -9,7 +9,7 @@ public class RoATrackerManager: NSObject {
     
     public static let shared = RoATrackerManager()
     
-    var deepLink: RoADeeplinkManager?
+   // var deepLink: RoADeeplinkManager?
     
     var trackers: [RoATracker] = []
     
@@ -52,4 +52,3 @@ extension RoATrackerManager: UIApplicationDelegate  {
         return true
     }
 }
-

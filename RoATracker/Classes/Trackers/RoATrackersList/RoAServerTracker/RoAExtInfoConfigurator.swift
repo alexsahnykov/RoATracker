@@ -5,6 +5,9 @@
 //  Created by Александр Сахнюков on 14/08/2019.
 //
 
+import CoreTelephony
+import AdSupport
+
 import Foundation
 import CoreTelephony
 
@@ -14,7 +17,7 @@ public struct RoAExtInfoConfigurator {
     
     private var extInfoVer = "i2"
     
-    private var appPkgName: String = {
+    lazy private var appPkgName: String = {
         guard let bundle = Bundle.main.bundleIdentifier else { return "noBundle"}
         return bundle
     }()
@@ -78,12 +81,9 @@ public struct RoAExtInfoConfigurator {
         let total = Int(truncating: totalSize) / (1024 * 1024 * 1024)
         let free = Int(truncating: freeSize) / (1024 * 1024 * 1024)
         return String(total) + "," + String(free)
-        
     }()
     
     private let timeZone = NSTimeZone.system.identifier
-    
-    
     
     public func getExtInfo() -> String {
         return extInfoParamets.joined(separator: ",")
@@ -93,7 +93,4 @@ public struct RoAExtInfoConfigurator {
         let array:[String] = [extInfoVer, appPkgName, pkgVerCode, pkgInfoVerName, osVer, modelName, locale, devTimeZoneAbv, carrierName, screenSize, cpuCores, storageSize, timeZone]
         extInfoParamets = array
     }
-    
-    
-    
 }

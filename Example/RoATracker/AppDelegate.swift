@@ -17,16 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        var url = RoAServerTackerURLConfigurator()
-print(url.getUrl())
-        print(url.extinfo.getExtInfo())
         return true
     }
 
-
-    override init() {
-        let manager = RoAFBTracker()
-        RoATrackerManager.shared.add(manager)
-    }
 }
 

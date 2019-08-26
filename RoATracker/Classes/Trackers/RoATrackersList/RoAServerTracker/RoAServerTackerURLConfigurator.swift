@@ -4,14 +4,22 @@
 //
 //  Created by Александр Сахнюков on 12/08/2019.
 //
+import AdSupport
 
-public struct RoAServerTackerURLConfigurator {
+public struct RoAServerTrackerURLConfigurator {
     
-    public var deeplink: NSURL?
+    var deeplink: String?
+    
+    private let organicDeeplink: String
     
     public var extinfo = RoAExtInfoConfigurator()
     
-    public func getUrl() -> URL? {
+    public mutating func getUrl(deeplink: String?) -> URL? {
+        guard  deeplink != nil else {
+            self.deeplink = organicDeeplink
+            return url
+        }
+        self.deeplink = deeplink
         return url
     }
     
@@ -21,21 +29,38 @@ public struct RoAServerTackerURLConfigurator {
         components.host = "trk.questmedia.ru"
         components.path = "/application/install"
         components.queryItems = [
-            URLQueryItem(name: "deeplink", value: deeplink?.absoluteString),
+            URLQueryItem(name: "deeplink", value: deeplink),
             //        URLQueryItem(name: "adset", value: "adset"),
-            URLQueryItem(name: "mobile_cookie", value: "99c4cab0-526b-47bc-b1b1-c34d27b62897"),
+            URLQueryItem(name: "mobile_cookie", value: mobileCooke),
             URLQueryItem(name: "extinfo", value: extinfo.getExtInfo()),
-            URLQueryItem(name: "bundle_id", value: "com.app.deeplinks"),
-            URLQueryItem(name: "fb_bundle_version", value: "1.0"),
-            URLQueryItem(name: "fb_bundle_short_version", value: "1")
+            URLQueryItem(name: "bundle_id", value: Bundle.main.bundleIdentifier),
+            URLQueryItem(name: "fb_bundle_version", value: getFBVersion()),
+            URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())
         ]
         return components.url
     }
     
-    public init() {}
+    private func getFBVersion() -> String? {
+        guard let dictionary = Bundle.main.infoDictionary else {return nil}
+        let version = dictionary["CFBundleVersion"] as! String
+        return version
+    }
     
+    private func getFBShortVertion() -> String? {
+        guard let dictionary = Bundle.main.infoDictionary else {return nil}
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        return version
+    }
+    
+    public var mobileCooke: String = {
+        var status = ASIdentifierManager.shared().advertisingIdentifier
+        return status.uuidString
+    }()
+    
+    public init(organicDeeplink: String) {
+        self.organicDeeplink = organicDeeplink
+    }
 }
-
 
 public enum RoADeeplickType {
     case apsFlyer, FaceBook
