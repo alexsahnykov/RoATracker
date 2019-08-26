@@ -23,7 +23,6 @@ public class RoAServerTracker: NSObject {
             case .success(let id):
                 self.serverId = id
                 print(id)
-                UserDefaults.standard.set(id, forKey: "id")
             case .failure(let error):
                 print(error.localizedDescription)
             }

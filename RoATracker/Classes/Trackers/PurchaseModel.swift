@@ -6,17 +6,20 @@
 //
 
 public protocol Eventable {
-    var id: Int {get}
     var eventName: String {get}
+    var parameters: [String: Any]? {get}
 }
 
 public struct Event: Eventable {
     public var id: Int
     public var eventName: String
+    public var parameters: [String: Any]?
     
-    public init(id: Int, eventName: String) {
+    public init(_ id: Int, eventName: String, parameters: [String: Any]? = nil) {
         self.id = id
         self.eventName = eventName
+        self.parameters = parameters
     }
+    
 }
 

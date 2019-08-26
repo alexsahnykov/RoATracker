@@ -8,12 +8,8 @@ import FBSDKCoreKit
 
 public class RoAFBTracker: NSObject, RoATracker  {
     
-    public func testCkic(_ event: AppEvents.Name) {
-        AppEvents.logEvent(event)
-    }
-    
     public func createEvent(_ event: Eventable) {
-        AppEvents.logEvent(AppEvents.Name(rawValue: event.eventName), parameters: ["id": event.id])
+        AppEvents.logEvent(AppEvents.Name(event.eventName))
     }
     
     public func purchase(_ purchase: Purchase) {

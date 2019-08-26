@@ -11,14 +11,12 @@ public struct RoAServerResponse: Decodable {
     let error: RoAServerError?
     
     struct RoAServerError: Decodable {
-        
         let id: Int?
         let describtion: String?
-    
     }
 }
 
 public enum RoAServerError: Error {
-    case wrondExtInfo
+    case wrongExtInfo
 }
 
