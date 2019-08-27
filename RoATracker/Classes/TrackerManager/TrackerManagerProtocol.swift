@@ -12,5 +12,7 @@ public protocol RoATrackerManagerProtocol: UIApplicationDelegate {
     func remove(_ tracker: RoATracker)
     
     func get(_ tracker: RoATracker.Type) -> RoATracker?
+    
+    func get(_ tracker: TrackersList) -> RoATracker?
 
 }
