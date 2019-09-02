@@ -42,5 +42,6 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
    s.dependency 'FBSDKCoreKit', '5.3.0'
+   s.dependency 'AppsFlyerFramework'
    s.static_framework = true
 end
