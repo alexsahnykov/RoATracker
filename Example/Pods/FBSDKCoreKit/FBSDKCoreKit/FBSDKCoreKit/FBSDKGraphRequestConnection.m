@@ -214,7 +214,7 @@ NSURLSessionDataDelegate
     self.state = kStateCancelled;
     [self completeFBSDKURLSessionWithResponse:nil
                                          data:nil
-                                 networkError:[NSError fbUnknownErrorWithMessage:msg]];
+                                 networkError:[FBSDKError unknownErrorWithMessage:msg]];
 
     return;
   }
@@ -329,7 +329,7 @@ NSURLSessionDataDelegate
                    logger:(FBSDKLogger *)logger
 {
   [attachments enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-    value = [FBSDKInternalUtility convertRequestValue:value];
+    value = [FBSDKBasicUtility convertRequestValue:value];
     if ([value isKindOfClass:[NSString class]]) {
       if (addFormData) {
         [body appendWithKey:key formValue:(NSString *)value logger:logger];
@@ -589,7 +589,7 @@ NSURLSessionDataDelegate
     NSInteger statusCode = _urlResponse.statusCode;
 
     if (!error && [response.MIMEType hasPrefix:@"image"]) {
-      error = [NSError fbErrorWithCode:FBSDKErrorGraphRequestNonTextMimeTypeReturned
+      error = [FBSDKError errorWithCode:FBSDKErrorGraphRequestNonTextMimeTypeReturned
                                 message:@"Response is a non-text MIME type; endpoints that return images and other "
                @"binary data should be fetched using NSURLRequest and NSURLSession"];
     } else {
@@ -598,13 +598,13 @@ NSURLSessionDataDelegate
                              statusCode:statusCode];
     }
   } else if (!error) {
-    error = [NSError fbErrorWithCode:FBSDKErrorUnknown
+    error = [FBSDKError errorWithCode:FBSDKErrorUnknown
                               message:@"Missing NSURLResponse"];
   }
 
   if (!error) {
     if (self.requests.count != results.count) {
-      error = [NSError fbErrorWithCode:FBSDKErrorGraphRequestProtocolMismatch
+      error = [FBSDKError errorWithCode:FBSDKErrorGraphRequestProtocolMismatch
                                 message:@"Unexpected number of results returned from server."];
     } else {
       [_logger appendFormat:@"Response <#%lu>\nDuration: %llu msec\nSize: %lu kB\nResponse Body:\n%@\n\n",
@@ -724,7 +724,7 @@ NSURLSessionDataDelegate
 {
   id parsed = nil;
   if (!(*error) && [utf8 isKindOfClass:[NSString class]]) {
-    parsed = [FBSDKInternalUtility objectForJSONString:utf8 error:error];
+    parsed = [FBSDKBasicUtility objectForJSONString:utf8 error:error];
     // if we fail parse we attempt a re-parse of a modified input to support results in the form "foo=bar", "true", etc.
     // which is shouldn't be necessary since Graph API v2.1.
     if (*error) {
@@ -734,7 +734,7 @@ NSURLSessionDataDelegate
       NSDictionary *original = @{ FBSDKNonJSONResponseProperty : utf8 };
       NSString *jsonrep = [FBSDKBasicUtility JSONStringForObject:original error:NULL invalidObjectHandler:NULL];
       NSError *reparseError = nil;
-      parsed = [FBSDKInternalUtility objectForJSONString:jsonrep error:&reparseError];
+      parsed = [FBSDKBasicUtility objectForJSONString:jsonrep error:&reparseError];
       if (!reparseError) {
         *error = nil;
       }
@@ -894,7 +894,7 @@ NSURLSessionDataDelegate
       FBSDKErrorRecoveryAttempter *attempter = [FBSDKErrorRecoveryAttempter recoveryAttempterFromConfiguration:recoveryConfiguration];
       [FBSDKBasicUtility dictionary:userInfo setObject:attempter forKey:NSRecoveryAttempterErrorKey];
 
-      return [NSError fbErrorWithCode:FBSDKErrorGraphRequestGraphAPI
+      return [FBSDKError errorWithCode:FBSDKErrorGraphRequestGraphAPI
                               userInfo:userInfo
                                message:nil
                        underlyingError:nil];
@@ -904,7 +904,7 @@ NSURLSessionDataDelegate
   return nil;
 }
 
-- (NSError *)errorWithCode:(FBSDKError)code
+- (NSError *)errorWithCode:(FBSDKCoreError)code
                 statusCode:(NSInteger)statusCode
         parsedJSONResponse:(id)response
                 innerError:(NSError *)innerError

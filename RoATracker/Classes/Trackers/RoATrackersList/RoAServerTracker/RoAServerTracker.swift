@@ -7,9 +7,9 @@
 
 public class RoAServerTracker: NSObject {
     
-    public var serverId: String?
+    public weak var delegate: RoATrackerManagerDelegate? 
     
-    var deeplink: String?
+    public var serverId: String?
     
     private var urlConfigurator: RoAServerTrackerURLConfigurator
     
@@ -18,7 +18,7 @@ public class RoAServerTracker: NSObject {
             print("already have ID")
             return
         }
-        getIdFromRoAServer(url: self.urlConfigurator.getUrl(deeplink: deeplink)) { (result: Result<String, Error>) in
+        getIdFromRoAServer(url: self.urlConfigurator.getUrl()) { (result: Result<String, Error>) in
             switch result {
             case .success(let id):
                 self.serverId = id
@@ -60,6 +60,8 @@ public class RoAServerTracker: NSObject {
 }
 
 extension RoAServerTracker: RoATracker {
+ 
+    
   
     public func trial(_ event: Eventable) {
         
@@ -79,9 +81,7 @@ extension RoAServerTracker: RoATracker {
     }
     
     public func install() {
+  
     }
     
-    public func registerTracker(_ deeplink: String? = nil) {
-        self.deeplink = deeplink
-    }
 }

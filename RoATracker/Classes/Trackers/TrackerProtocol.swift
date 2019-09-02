@@ -7,6 +7,8 @@
 
 public protocol RoATracker: UIApplicationDelegate {
     
+    var delegate: RoATrackerManagerDelegate? {get set}
+    
     func install()
     
     func purchase(_ purchase: Purchase)

@@ -6,8 +6,14 @@
 //
 import FBSDKCoreKit
 
-public class RoAFBTracker: NSObject, RoATracker  {
-   
+public class RoAFBTracker: NSObject  {
+    
+    public  weak var delegate: RoATrackerManagerDelegate?
+    
+}
+
+extension RoAFBTracker: RoATracker {
+
     public func trial(_ name: Eventable) {
         guard let params = name.parameters else {
             AppEvents.logEvent(.startTrial)

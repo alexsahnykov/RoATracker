@@ -14,12 +14,12 @@ public struct RoAServerTrackerURLConfigurator {
     
     public var extinfo = RoAExtInfoConfigurator()
     
-    public mutating func getUrl(deeplink: String?) -> URL? {
+    public mutating func getUrl() -> URL? {
         guard  deeplink != nil else {
             self.deeplink = organicDeeplink
             return url
         }
-        self.deeplink = deeplink
+
         return url
     }
     

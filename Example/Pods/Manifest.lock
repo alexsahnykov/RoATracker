@@ -1,18 +1,21 @@
 PODS:
-  - FBSDKCoreKit (5.0.0):
-    - FBSDKCoreKit/Basics (= 5.0.0)
-    - FBSDKCoreKit/Core (= 5.0.0)
-  - FBSDKCoreKit/Basics (5.0.0)
-  - FBSDKCoreKit/Core (5.0.0):
+  - AppsFlyerFramework (4.10.3)
+  - FBSDKCoreKit (5.3.0):
+    - FBSDKCoreKit/Basics (= 5.3.0)
+    - FBSDKCoreKit/Core (= 5.3.0)
+  - FBSDKCoreKit/Basics (5.3.0)
+  - FBSDKCoreKit/Core (5.3.0):
     - FBSDKCoreKit/Basics
-  - RoATracker (0.1.0):
-    - FBSDKCoreKit
+  - RoATracker (1.0.0):
+    - AppsFlyerFramework (= 4.10.3)
+    - FBSDKCoreKit (= 5.3.0)
 
 DEPENDENCIES:
   - RoATracker (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppsFlyerFramework
     - FBSDKCoreKit
 
 EXTERNAL SOURCES:
@@ -20,8 +23,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FBSDKCoreKit: ba361d4a9d4dc29ff218822b849b22d4f869c7bb
-  RoATracker: 4cd2fd5ec5c4e1e55395daab856739b967cbb856
+  AppsFlyerFramework: fbc34d43d02342afb1b77a5d87ab0a9e27138267
+  FBSDKCoreKit: 39748deefe37a005f983722e433be2ddcdd83ae7
+  RoATracker: 5e687a3f40e3ffd8bd5db1decfc3ae3fe24b39e0
 
 PODFILE CHECKSUM: 2dd9c4803bc90a31f6f9c63bce51374ad26a5d4c
 
