@@ -60,12 +60,17 @@ public class RoAServerTracker: NSObject {
 }
 
 extension RoAServerTracker: RoATracker {
+  
+    public func trial(_ event: Eventable) {
+        
+    }
+    
     
     public func purchaseByPrice(_ price: Double) {
     }
     
     
-    public func createEvent(_ event: Eventable) {
+    public func customEvent(_ event: Eventable) {
         
     }
     

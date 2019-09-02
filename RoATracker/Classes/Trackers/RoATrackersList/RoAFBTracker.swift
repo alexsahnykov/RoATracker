@@ -7,8 +7,17 @@
 import FBSDKCoreKit
 
 public class RoAFBTracker: NSObject, RoATracker  {
+   
+    public func trial(_ name: Eventable) {
+        guard let params = name.parameters else {
+            AppEvents.logEvent(.startTrial)
+            return
+        }
+        AppEvents.logEvent(.startTrial, parameters: params)
+        return
+    }
     
-    public func createEvent(_ event: Eventable) {
+    public func customEvent(_ event: Eventable) {
         AppEvents.logEvent(AppEvents.Name(event.eventName))
     }
     
@@ -20,12 +29,8 @@ public class RoAFBTracker: NSObject, RoATracker  {
         AppEvents.logPurchase(purchase.valueToSum, currency: purchase.currency, parameters: params)
     }
     
-    public func registerTracker(_ deeplink: String? = nil) {
-        
-    }
-    
     public func install() {
-        
+        AppEvents.activateApp()
     }
 }
 

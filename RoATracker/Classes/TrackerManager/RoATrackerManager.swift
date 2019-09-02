@@ -24,17 +24,6 @@ extension RoATrackerManager: RoATrackerManagerProtocol {
         return obj.first
     }
     
-    public func get(_ tracker: TrackersList) -> RoATracker? {
-//        switch tracker {
-//        case .faceBook:
-//            
-//        case .appsFlyer:
-//            
-//        case .roaServer:
-//            
-//        }
-    }
-    
     public func add(_ tracker: RoATracker) {
         let isContain = trackers.contains {$0 === tracker }
         guard !isContain else {

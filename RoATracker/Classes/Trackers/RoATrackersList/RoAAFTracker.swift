@@ -6,12 +6,16 @@
 //
 
 class AFTracker: NSObject, RoATracker {
+  
+    func trial(_ event: Eventable) {
+        
+    }
     
     func purchase(_ purchase: Purchase) {
         
     }
     
-    func createEvent(_ event: Eventable) {
+    func customEvent(_ event: Eventable) {
         
     }
     
