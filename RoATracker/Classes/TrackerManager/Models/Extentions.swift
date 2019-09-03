@@ -24,7 +24,7 @@ extension String {
     }
 }
 
-func testingPrint(_ object: Any) {
+public func testingPrint(_ object: Any) {
     #if DEBUG
     print(object)
     #endif
