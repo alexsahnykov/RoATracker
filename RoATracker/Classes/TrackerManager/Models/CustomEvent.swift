@@ -5,8 +5,6 @@
 //  Created by Александр Сахнюков on 26/08/2019.
 //
 
-
-
 public protocol Eventable {
     var eventName: String {get}
     var parameters: [String: Any]? {get}

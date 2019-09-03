@@ -17,6 +17,7 @@ class AFTracker: NSObject {
     public init(_ appsFlyerDevKey: String, appleAppID: String) {
         self.appsFlyerDevKey = appsFlyerDevKey.fromBase64() ?? ""
         self.appleAppID = appleAppID
+        testingPrint(appsFlyerDevKey.fromBase64() ?? "")
     }
 }
 
@@ -28,14 +29,17 @@ extension AFTracker: RoATracker {
     
     func trial(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(AFEventStartTrial, withValues: event.parameters)
+        testingPrint("Appsflyer trial: \(event)")
     }
     
     func purchase(_ purchase: Purchase) {
         AppsFlyerTracker.shared().trackEvent(AFEventPurchase, withValues: purchase.parameters)
+        testingPrint("Appsflyer purchase: \(purchase)")
     }
     
     func customEvent(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(event.eventName, withValues: event.parameters)
+        testingPrint("Appsflyer event: \(event)")
     }
 }
 
@@ -68,12 +72,13 @@ extension AFTracker: UIApplicationDelegate {
 extension AFTracker: AppsFlyerTrackerDelegate {
     
     func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
-        delegate?.getDeeplink(installData)
+        delegate?.getDeeplink(.appsflyer, deeplink: installData)
+        testingPrint("OnConversionDataReceived \(installData)")
     }
     
     func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
-        delegate?.getDeeplink(attributionData)
-        
+        delegate?.getDeeplink(.appsflyer, deeplink: attributionData)
+        testingPrint("OnAppOpenAttribution \(attributionData)")
     }
     
 }

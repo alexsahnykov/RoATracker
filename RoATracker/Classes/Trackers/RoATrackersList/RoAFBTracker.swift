@@ -21,6 +21,7 @@ extension RoAFBTracker: RoATracker {
         }
         AppEvents.logEvent(.startTrial, parameters: params)
         return
+        
     }
     
     public func customEvent(_ event: Eventable) {

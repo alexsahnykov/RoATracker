@@ -194,6 +194,10 @@
 		C0F69CF6373D43D1F1080AA661EA3E4D /* FBSDKAppLinkReturnToRefererView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5984FA4731291ABE8AAE7BE0332A817B /* FBSDKAppLinkReturnToRefererView_Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C0F92D7A4FFC8969532B588C25670004 /* FBSDKBridgeAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9733D979FE683F3077A0298131FC42 /* FBSDKBridgeAPIResponse.m */; };
 		C11C9B928F0ED9F388F7E733743C0446 /* FBSDKURL.h in Headers */ = {isa = PBXBuildFile; fileRef = E0A783942ED1A200CBE30A91CBC139CE /* FBSDKURL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C16B55FF231EB6EB00105F6B /* DeeplinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */; };
+		C16B5601231EB6FE00105F6B /* RoATrackerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */; };
+		C16B5602231EB70300105F6B /* RoATrackerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */; };
+		C16B5603231EB70500105F6B /* DeeplinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */; };
 		C2542CADEC66031666DA4B3B67504109 /* FBSDKImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 51B9EB7990655CD0D46DACC0696A0B9B /* FBSDKImageDownloader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C2D1D257E369924257BF408127593A71 /* FBSDKLogo.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF1FC9CABB6F45EBCE551283DF43EA9 /* FBSDKLogo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C4C965F73532F1051C18F11499AFB175 /* FBSDKContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 20FBEA386FAE58B82E53445CE4B1150C /* FBSDKContainerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -498,6 +502,8 @@
 		BF87BDFD192F2F1976DBC9F818D5FA94 /* FBSDKBridgeAPIRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIRequest.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.h; sourceTree = "<group>"; };
 		BFC7F160A2C3453BD0A14EE10B48290F /* RoAServerTracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RoAServerTracker.swift; sourceTree = "<group>"; };
 		C03043A01362E49EC9B9C2D63B822BE7 /* FBSDKErrorRecoveryConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKErrorRecoveryConfiguration.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorRecoveryConfiguration.m; sourceTree = "<group>"; };
+		C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkType.swift; sourceTree = "<group>"; };
+		C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoATrackerManagerDelegate.swift; sourceTree = "<group>"; };
 		C31D7DCD2C829447FE74C2640CAC79E5 /* FBSDKBridgeAPIResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIResponse.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.h; sourceTree = "<group>"; };
 		C5B5F75E011A276EC59516563B6145B6 /* RoAAFTracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RoAAFTracker.swift; sourceTree = "<group>"; };
 		C5F27E0034D2A4B6917239DECE68C1E9 /* FBSDKTypeUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTypeUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKTypeUtility.h; sourceTree = "<group>"; };
@@ -612,6 +618,7 @@
 			children = (
 				E93CC247929F776E5B6EC19B07C39F3E /* Pod */,
 				648747646FEC0C83262CC086BC54E6F1 /* Support Files */,
+				C16B55FD231EB5F700105F6B /* Models */,
 				44ECAEB7D22949F87FEF927CBEB8C215 /* TrackerManager */,
 				30EB7F9AEE4CA1A75DF2B5B8DFE3947F /* Trackers */,
 			);
@@ -632,9 +639,6 @@
 		30EB7F9AEE4CA1A75DF2B5B8DFE3947F /* Trackers */ = {
 			isa = PBXGroup;
 			children = (
-				358F22E4FAD576982C0DC482617390E6 /* CustomEvent.swift */,
-				81324194D618D0132F4D2C77AC16A75A /* PurchaseModel.swift */,
-				353FDE94A6F7DBD07DA01FA2C262DB6E /* RoAServerResponse.swift */,
 				FC7DC20F2E47A9F0A4A0EDA4276B0154 /* TrackerProtocol.swift */,
 				32FF05DFFC3E9BD923A1ACA81758B6CE /* RoATrackersList */,
 			);
@@ -674,9 +678,9 @@
 		44ECAEB7D22949F87FEF927CBEB8C215 /* TrackerManager */ = {
 			isa = PBXGroup;
 			children = (
-				37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */,
-				AC67D9A6743E6BE4D79C487B52781223 /* RoATrackerManager.swift */,
 				7F4479A47DA3D257422655D79ED8E132 /* TrackerManagerProtocol.swift */,
+				AC67D9A6743E6BE4D79C487B52781223 /* RoATrackerManager.swift */,
+				C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */,
 			);
 			name = TrackerManager;
 			path = RoATracker/Classes/TrackerManager;
@@ -734,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				18352818510627512018BC0B39EBC45C /* RoATracker */,
+				37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -787,6 +792,18 @@
 				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		C16B55FD231EB5F700105F6B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				358F22E4FAD576982C0DC482617390E6 /* CustomEvent.swift */,
+				81324194D618D0132F4D2C77AC16A75A /* PurchaseModel.swift */,
+				353FDE94A6F7DBD07DA01FA2C262DB6E /* RoAServerResponse.swift */,
+				C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */,
+			);
+			name = Models;
+			path = RoATracker/Classes/TrackerManager/Models;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -1269,6 +1286,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					28907903AF6DD0AD321D92CD660E7E23 = {
+						LastSwiftMigration = 1030;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1337,6 +1359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE95BD4D85F90EBFD1B690B15757C208 /* CustomEvent.swift in Sources */,
+				C16B5603231EB70500105F6B /* DeeplinkType.swift in Sources */,
 				030876C69C89283FC4080C8F40DD3EB1 /* Extentions.swift in Sources */,
 				2B813F4A478E931488A56CE073E9B610 /* PurchaseModel.swift in Sources */,
 				78D4DD26D8AF54CEF984A9C4D0B009AE /* RoAAFTracker.swift in Sources */,
@@ -1348,6 +1371,7 @@
 				499569FBEAC6DC475957379922153E67 /* RoATracker-dummy.m in Sources */,
 				877E101B508F6B70078ABF2647B442C9 /* RoATrackerManager.swift in Sources */,
 				CB0C3869C5BCE3F0EBE26E30790D5C07 /* TrackerManagerProtocol.swift in Sources */,
+				C16B5602231EB70300105F6B /* RoATrackerManagerDelegate.swift in Sources */,
 				20D9B9101F933E8D976FFE1C90A2B62C /* TrackerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1391,6 +1415,7 @@
 				F993BCFF046B1A216DE466F830F77E21 /* FBSDKConstants.m in Sources */,
 				07F83FE940F30063EDA700DD8EBBA2DF /* FBSDKContainerViewController.m in Sources */,
 				1FEA0A3C782AD8AAC94A17B896CA16CC /* FBSDKCoreKit-dummy.m in Sources */,
+				C16B5601231EB6FE00105F6B /* RoATrackerManagerDelegate.swift in Sources */,
 				EC4FEFDB5D0967B7EA7ABD1AFC30F7D8 /* FBSDKCrypto.m in Sources */,
 				3F54C5EF1BFC9FF0AE1B308E7BE2EDA7 /* FBSDKDeviceRequestsHelper.m in Sources */,
 				2A864BCC55F7379B83CA07ADB817ADEC /* FBSDKDialogConfiguration.m in Sources */,
@@ -1407,6 +1432,7 @@
 				AECFA240FCDFC58C2038C11E413326B9 /* FBSDKGraphRequestBody.m in Sources */,
 				E8C7BEA24042AA97AE625EB7981EDD2C /* FBSDKGraphRequestConnection.m in Sources */,
 				FD4F1AFCFC778CF98FBF3B76C02BFEA6 /* FBSDKGraphRequestDataAttachment.m in Sources */,
+				C16B55FF231EB6EB00105F6B /* DeeplinkType.swift in Sources */,
 				66B59C4F4D5E734703695665C93FA72D /* FBSDKGraphRequestMetadata.m in Sources */,
 				E8F86FE57449FB9E7655D546E850E98F /* FBSDKGraphRequestPiggybackManager.m in Sources */,
 				66790089C1822C1CC4BB871B19C1D3DF /* FBSDKHybridAppEventsScriptMessageHandler.m in Sources */,
@@ -1661,6 +1687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCFAC1E9EEA3215075A1EF3F8E8FE91 /* FBSDKCoreKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1681,6 +1708,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1880,6 +1908,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCFAC1E9EEA3215075A1EF3F8E8FE91 /* FBSDKCoreKit.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

@@ -23,3 +23,9 @@ extension String {
         return String(data: data, encoding: .utf8)
     }
 }
+
+func testingPrint(_ object: Any) {
+    #if DEBUG
+    print(object)
+    #endif
+}

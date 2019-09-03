@@ -5,17 +5,9 @@
 //  Created by Александр Сахнюков on 01/08/2019.
 //
 
-public protocol RoATrackerManagerDelegate: class {
-    
-    func getDeeplink(_ : [AnyHashable: Any])
-    
-}
-
 public class RoATrackerManager: NSObject {
     
     public static let shared = RoATrackerManager()
-    
-   // var deepLink: RoADeeplinkManager?
     
     var trackers: [RoATracker] = []
     
@@ -74,10 +66,9 @@ public func application(_ application: UIApplication, continue userActivity: NSU
 }
 
 extension RoATrackerManager: RoATrackerManagerDelegate {
-   
-    public func getDeeplink(_: [AnyHashable : Any]) {
-        guard let tracker = self.get(RoAServerTracker.self) as? RoAServerTracker else {return}
-     //   tracker.
-    }
     
+    public func getDeeplink(_ type: DeeplinkType, deeplink: [AnyHashable : Any]) {
+            guard let tracker = self.get(RoAServerTracker.self) as? RoAServerTracker else {return}
+    }
+ 
 }
