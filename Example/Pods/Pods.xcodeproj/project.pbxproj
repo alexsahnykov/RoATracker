@@ -370,7 +370,7 @@
 		3697A88683A9F18AEFA98BD68AAB9166 /* FBSDKAppLinkReturnToRefererView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppLinkReturnToRefererView.m; path = FBSDKCoreKit/FBSDKCoreKit/AppLink/FBSDKAppLinkReturnToRefererView.m; sourceTree = "<group>"; };
 		36BEC92DFEF61620F313359FE47B3990 /* FBSDKViewHierarchy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKViewHierarchy.h; path = FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/Codeless/FBSDKViewHierarchy.h; sourceTree = "<group>"; };
 		37641543AFDD951A8E00FB66F5BE9683 /* FBSDKUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKUtility.h; sourceTree = "<group>"; };
-		37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extentions.swift; path = ../../Extentions.swift; sourceTree = "<group>"; };
 		37C19118AEAB3AFA15C325455204AE19 /* FBSDKMaleSilhouetteIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMaleSilhouetteIcon.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKMaleSilhouetteIcon.h; sourceTree = "<group>"; };
 		38A69E1BEF43351CC0BA4D943F8D30C7 /* FBSDKCoreKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSDKCoreKit-umbrella.h"; sourceTree = "<group>"; };
 		3ABC92616B7F218F31F9D6D7EB4B705E /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppsFlyerLib.framework; sourceTree = "<group>"; };
@@ -706,6 +706,7 @@
 		648747646FEC0C83262CC086BC54E6F1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */,
 				CA634DEEEB49FEFC026035A4733A2F06 /* RoATracker.modulemap */,
 				926E4BF03B6B32E5B3894A76CC8CAFEC /* RoATracker.xcconfig */,
 				6FD9CBD735314834AD190A1F481E9C45 /* RoATracker-dummy.m */,
@@ -738,7 +739,6 @@
 			isa = PBXGroup;
 			children = (
 				18352818510627512018BC0B39EBC45C /* RoATracker */,
-				37748C475BF863156E13DDA67B40BCE5 /* Extentions.swift */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
