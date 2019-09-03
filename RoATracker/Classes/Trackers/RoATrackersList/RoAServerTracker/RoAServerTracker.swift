@@ -13,18 +13,21 @@ public class RoAServerTracker: NSObject {
     
     private var urlConfigurator: RoAServerTrackerURLConfigurator
     
-    public func getServerId() {
+    public func getServerId(_ type: DeeplinkType) {
         guard serverId == nil else {
-            print("already have ID")
+            testingPrint("already have ID")
             return
         }
-        getIdFromRoAServer(url: self.urlConfigurator.getUrl()) { (result: Result<String, Error>) in
+        
+        let url = urlConfigurator.getInstallUrl(type)
+        
+        getIdFromRoAServer(url: url) { (result: Result<String, Error>) in
             switch result {
             case .success(let id):
                 self.serverId = id
-                print(id)
+                testingPrint(id)
             case .failure(let error):
-                print(error.localizedDescription)
+                testingPrint(error.localizedDescription)
             }
         }
     }
@@ -41,7 +44,7 @@ public class RoAServerTracker: NSObject {
                 return
             }
             guard let data = data else { return}
-            print(data.base64EncodedString())
+            testingPrint(data.base64EncodedString())
             do {
                 //let result = try JSONDecoder().decode(RoAServerResponse.Self, from: data)
                 let str = String(decoding: data, as: UTF8.self)
@@ -60,24 +63,18 @@ public class RoAServerTracker: NSObject {
 }
 
 extension RoAServerTracker: RoATracker {
- 
-    
   
     public func trial(_ event: Eventable) {
         
     }
-    
-    
-    public func purchaseByPrice(_ price: Double) {
-    }
-    
     
     public func customEvent(_ event: Eventable) {
         
     }
     
     public func purchase(_ purchase: Purchase) {
-        
+        let id = serverId ?? ""
+//GET /application/purchase?id=168654&original_transaction_id=GPA.3328-4847-0183-20450&bundle_id=com.spirit.astrologer
     }
     
     public func install() {

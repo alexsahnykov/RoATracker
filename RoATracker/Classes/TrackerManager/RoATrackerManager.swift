@@ -7,11 +7,34 @@
 
 public class RoATrackerManager: NSObject {
     
+    public var delegate: RoATrackerManagerDelegate?
+    
     public static let shared = RoATrackerManager()
     
     var trackers: [RoATracker] = []
     
     private override init() {}
+    
+}
+
+extension RoATrackerManager: RoATracker {
+
+    public func install() {
+        trackers.forEach {$0.install()}
+    }
+    
+    public func purchase(_ purchase: Purchase) {
+        trackers.forEach {$0.purchase(purchase)}
+    }
+    
+    public func customEvent(_ event: Eventable) {
+        trackers.forEach {$0.customEvent(event)}
+    }
+    
+    public func trial(_ event: Eventable) {
+        trackers.forEach {$0.trial(event)}
+    }
+    
     
 }
 
@@ -25,7 +48,7 @@ extension RoATrackerManager: RoATrackerManagerProtocol {
     public func add(_ tracker: RoATracker) {
         let isContain = trackers.contains {$0 === tracker }
         guard !isContain else {
-            print("Tracker allready added")
+            testingPrint("Tracker allready added")
             return}
         tracker.delegate = self
         trackers.append(tracker)
@@ -58,17 +81,13 @@ extension RoATrackerManager: UIApplicationDelegate  {
         return true
     }
     
-    
-public func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-      //  AppsFlyerTracker.shared().continue(userActivity, restorationHandler: restorationHandler)
-        return true
-    }
 }
 
 extension RoATrackerManager: RoATrackerManagerDelegate {
     
     public func getDeeplink(_ type: DeeplinkType, deeplink: [AnyHashable : Any]) {
             guard let tracker = self.get(RoAServerTracker.self) as? RoAServerTracker else {return}
+        tracker.getServerId(type)
     }
  
 }
