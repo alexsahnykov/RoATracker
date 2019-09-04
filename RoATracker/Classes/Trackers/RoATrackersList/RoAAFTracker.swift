@@ -6,7 +6,7 @@
 //
 import AppsFlyerLib
 
-public class AFTracker: NSObject {
+public class RoAAFTracker: NSObject {
     
     weak public var delegate: RoATrackerManagerDelegate?
     
@@ -17,11 +17,11 @@ public class AFTracker: NSObject {
     public init(_ appsFlyerDevKey: String, appleAppID: String) {
         self.appsFlyerDevKey = appsFlyerDevKey.fromBase64() ?? ""
         self.appleAppID = appleAppID
-        testingPrint(appsFlyerDevKey.fromBase64() ?? "")
+        testingPrint(" Appsflyer id: \(appsFlyerDevKey.fromBase64() ?? "")")
     }
 }
 
- extension AFTracker: RoATracker {
+ extension RoAAFTracker: RoATracker {
     
    public func install() {
         
@@ -43,7 +43,7 @@ public class AFTracker: NSObject {
     }
 }
 
-extension AFTracker: UIApplicationDelegate {
+extension RoAAFTracker: UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool  {
         AppsFlyerTracker.shared().appsFlyerDevKey = self.appsFlyerDevKey
@@ -69,7 +69,7 @@ extension AFTracker: UIApplicationDelegate {
 }
 
 
-extension AFTracker: AppsFlyerTrackerDelegate {
+extension RoAAFTracker: AppsFlyerTrackerDelegate {
     
    public func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
         delegate?.getDeeplink(.appsflyer, deeplink: installData)
