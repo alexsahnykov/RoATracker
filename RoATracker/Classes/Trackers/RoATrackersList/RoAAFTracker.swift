@@ -6,9 +6,9 @@
 //
 import AppsFlyerLib
 
-class AFTracker: NSObject {
+public class AFTracker: NSObject {
     
-    weak var delegate: RoATrackerManagerDelegate?
+    weak public var delegate: RoATrackerManagerDelegate?
     
     private let appsFlyerDevKey: String
     
@@ -21,23 +21,23 @@ class AFTracker: NSObject {
     }
 }
 
-extension AFTracker: RoATracker {
+ extension AFTracker: RoATracker {
     
-    func install() {
+   public func install() {
         
     }
     
-    func trial(_ event: Eventable) {
+   public func trial(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(AFEventStartTrial, withValues: event.parameters)
         testingPrint("Appsflyer trial: \(event)")
     }
     
-    func purchase(_ purchase: Purchase) {
+  public  func purchase(_ purchase: Purchase) {
         AppsFlyerTracker.shared().trackEvent(AFEventPurchase, withValues: purchase.parameters)
         testingPrint("Appsflyer purchase: \(purchase)")
     }
     
-    func customEvent(_ event: Eventable) {
+   public func customEvent(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(event.eventName, withValues: event.parameters)
         testingPrint("Appsflyer event: \(event)")
     }
@@ -45,7 +45,7 @@ extension AFTracker: RoATracker {
 
 extension AFTracker: UIApplicationDelegate {
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool  {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool  {
         AppsFlyerTracker.shared().appsFlyerDevKey = self.appsFlyerDevKey
         AppsFlyerTracker.shared().appleAppID = self.appleAppID 
         AppsFlyerTracker.shared().delegate = self
@@ -53,16 +53,16 @@ extension AFTracker: UIApplicationDelegate {
         return true
     }
     
-    func applicationDidBecomeActive(_ application: UIApplication) {
+   public func applicationDidBecomeActive(_ application: UIApplication) {
         AppsFlyerTracker.shared().trackAppLaunch()
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+   public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         AppsFlyerTracker.shared().handleOpen(url, options: options)
         return true
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+   public func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         AppsFlyerTracker.shared().continue(userActivity, restorationHandler: restorationHandler)
         return true
     }
@@ -71,12 +71,12 @@ extension AFTracker: UIApplicationDelegate {
 
 extension AFTracker: AppsFlyerTrackerDelegate {
     
-    func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
+   public func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
         delegate?.getDeeplink(.appsflyer, deeplink: installData)
         testingPrint("OnConversionDataReceived \(installData)")
     }
     
-    func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
+   public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
         delegate?.getDeeplink(.appsflyer, deeplink: attributionData)
         testingPrint("OnAppOpenAttribution \(attributionData)")
     }

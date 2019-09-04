@@ -11,7 +11,7 @@ import AdSupport
 import Foundation
 import CoreTelephony
 
-public struct RoAExtInfoConfigurator {
+struct RoAExtInfoConfigurator {
     
     private var extInfoParamets: [String] = []
     
