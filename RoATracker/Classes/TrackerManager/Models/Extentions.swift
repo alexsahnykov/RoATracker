@@ -33,7 +33,7 @@ public func testingPrint(_ object: Any) {
 extension SKProduct {
     fileprivate static var formatter: NumberFormatter {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
+        formatter.numberStyle = .currencyISOCode
         return formatter
     }
     
@@ -51,4 +51,6 @@ extension SKProduct {
             return formattedPrice
         }
     }
+    
+    
 }

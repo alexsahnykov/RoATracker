@@ -29,7 +29,7 @@ extension RoAFBTracker: RoATracker {
     }
     
     public func purchase(_ purchase: Purchase) {
-        guard let params = purchase.converToParams() else {
+        guard let params = purchase.parameters else {
             AppEvents.logPurchase(purchase.valueToSum, currency: purchase.currency)
             return
         }
@@ -37,6 +37,7 @@ extension RoAFBTracker: RoATracker {
     }
     
     public func install() {
+        
         AppEvents.activateApp()
     }
 }
