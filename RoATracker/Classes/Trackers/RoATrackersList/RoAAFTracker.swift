@@ -17,29 +17,32 @@ public class RoAAFTracker: NSObject {
     public init(_ appsFlyerDevKey: String, appleAppID: String) {
         self.appsFlyerDevKey = appsFlyerDevKey.fromBase64() ?? ""
         self.appleAppID = appleAppID
-        testingPrint(" Appsflyer id: \(appsFlyerDevKey.fromBase64() ?? "")")
+        testingPrint("[RoA DEBUG] Appsflyer id: \(appsFlyerDevKey.fromBase64() ?? "")")
     }
 }
 
  extension RoAAFTracker: RoATracker {
     
-   public func install() {
+    public func install() {
         
     }
     
    public func trial(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(AFEventStartTrial, withValues: event.parameters)
-        testingPrint("Appsflyer trial: \(event)")
+        testingPrint("[RoA DEBUG] Appsflyer trial: \(event)")
     }
     
   public  func purchase(_ purchase: Purchase) {
-        AppsFlyerTracker.shared().trackEvent(AFEventPurchase, withValues: purchase.parameters)
-        testingPrint("Appsflyer purchase: \(purchase)")
+    let params: [String : Any] = [AFEventParamReceiptId: purchase.transactionId,
+                                  AFEventParamPrice: purchase.valueToSum,
+                                  AFEventParamCurrency:purchase.currency]
+    AppsFlyerTracker.shared().trackEvent(AFEventPurchase, withValues: params)
+     testingPrint(" [RoA DEBUG]Appsflyer purchase: \(purchase)")
     }
     
    public func customEvent(_ event: Eventable) {
         AppsFlyerTracker.shared().trackEvent(event.eventName, withValues: event.parameters)
-        testingPrint("Appsflyer event: \(event)")
+        testingPrint("[RoA DEBUG] Appsflyer event: \(event)")
     }
 }
 
@@ -71,14 +74,17 @@ extension RoAAFTracker: UIApplicationDelegate {
 
 extension RoAAFTracker: AppsFlyerTrackerDelegate {
     
-   public func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
-        delegate?.getDeeplink(.appsflyer, deeplink: installData)
-        testingPrint("OnConversionDataReceived \(installData)")
+    public func onConversionDataReceived(_ installData: [AnyHashable: Any]) {
+        DispatchQueue.main.async {
+            self.delegate?.getDeeplink(.appsflyer, deeplink: installData)
+            testingPrint("[RoA DEBUG] OnConversionDataReceived \(installData)")
+        }
     }
     
-   public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
-        delegate?.getDeeplink(.appsflyer, deeplink: attributionData)
-        testingPrint("OnAppOpenAttribution \(attributionData)")
+    public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
+        DispatchQueue.main.async {
+            self.delegate?.getDeeplink(.appsflyer, deeplink: attributionData)
+            testingPrint("[RoA DEBUG] OnAppOpenAttribution \(attributionData)")
+        }
     }
-    
 }

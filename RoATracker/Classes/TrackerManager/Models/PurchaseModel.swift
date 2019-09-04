@@ -12,25 +12,24 @@ public struct Purchase: Eventable {
     public var eventName: String
     public var valueToSum: Double
     public var currency: String
-    public var transactionId: Int
+    public var transactionId: String
     public var parameters: [String: Any]?
     
-    public init(_ transactionId: Int, eventName: String, valueToSum: Double, currency: String, customParams: [String: Any]? = nil) {
+    public init(_ transactionId: String, eventName: String, valueToSum: Double, currency: String, customParams: [String: Any]? = nil) {
         self.eventName = eventName
         self.valueToSum = valueToSum
         self.currency = currency
-        self.parameters = customParams
         self.transactionId = transactionId
     }
-
     
-    public init(_ transactionId: Int, product: SKProduct, customParams: [String: Any]? = nil) {
+    
+    public init(_ transactionId: String, product: SKProduct) {
         let name = product.productIdentifier
         let sum = product.price
         let currency = product.localizedPrice
-        self.init(transactionId, eventName: name, valueToSum: Double(truncating: sum), currency: currency, customParams: customParams)
+        self.init(transactionId, eventName: name, valueToSum: Double(truncating: sum), currency: currency)
     }
-
+    
     
     private func priceStringFor(_ product: SKProduct) -> String {
         let numberFormatter = NumberFormatter()
@@ -38,11 +37,4 @@ public struct Purchase: Eventable {
         numberFormatter.locale = product.priceLocale
         return numberFormatter.string(from: product.price)!
     }
-    
-    
 }
-
-
-//let locale = Locale.current
-//let currencySymbol = locale.currencySymbol!
-//let currencyCode = locale.currencyCode!
