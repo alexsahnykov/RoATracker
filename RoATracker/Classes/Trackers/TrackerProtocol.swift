@@ -16,6 +16,8 @@ public protocol RoATracker: UIApplicationDelegate {
     
     func customEvent(_ event: Eventable)
     
+    func event(_ event: EventList)
+    
     func trial(_ event: Eventable)
     
 }

@@ -7,7 +7,7 @@
 
 public class RoAServerTracker: NSObject {
     
-    public weak var delegate: RoATrackerManagerDelegate? 
+    public weak var delegate: RoATrackerManagerDelegate?
     
     public var serverId: String?
     
@@ -15,24 +15,24 @@ public class RoAServerTracker: NSObject {
     
     public func getServerId(_ type: DeeplinkType) {
         guard serverId == nil else {
-            testingPrint("already have ID")
+            testingPrint("[RoA Tracker server]: already have id")
             return
         }
         
         let url = urlConfigurator.getInstallUrl(type)
         
-        getIdFromRoAServer(url: url) { (result: Result<String, Error>) in
+        getIdFromRoAServer(url: url) { (result: Result<(String,String), Error>) in
             switch result {
-            case .success(let id):
-                self.serverId = id
-                testingPrint(id)
+            case .success(let responce):
+                testingPrint("[RoA Tracker server]: Get id responce \((responce.0, responce.1))")
+                self.serverId = responce.0
             case .failure(let error):
-                testingPrint(error.localizedDescription)
+                testingPrint("[RoA Tracker server]: Get  id error \(error.localizedDescription)")
             }
         }
     }
     
-    private func getIdFromRoAServer(url: URL?, completion: @escaping (Result<String, Error>) -> Void) {
+    private func getIdFromRoAServer(url: URL?, completion: @escaping (Result<(String,String), Error>) -> Void) {
         guard let url = url else {return}
         let defaultSession = URLSession(configuration: .default)
         var urlRequest = URLRequest(url: url)
@@ -44,11 +44,12 @@ public class RoAServerTracker: NSObject {
                 return
             }
             guard let data = data else { return}
-            testingPrint(data.base64EncodedString())
+            
             do {
                 //let result = try JSONDecoder().decode(RoAServerResponse.Self, from: data)
                 let str = String(decoding: data, as: UTF8.self)
-                completion(.success(str))
+                let responce = (str,response.debugDescription)
+                completion(.success(responce))
             } //catch let error {
             //  completion(.failure(error))
             //   return
@@ -63,7 +64,11 @@ public class RoAServerTracker: NSObject {
 }
 
 extension RoAServerTracker: RoATracker {
-  
+    
+    public func event(_ event: EventList) {
+        
+    }
+    
     public func trial(_ event: Eventable) {
         
     }
@@ -73,12 +78,19 @@ extension RoAServerTracker: RoATracker {
     }
     
     public func purchase(_ purchase: Purchase) {
-        let id = serverId ?? ""
-//GET /application/purchase?id=168654&original_transaction_id=GPA.3328-4847-0183-20450&bundle_id=com.spirit.astrologer
+        let url = urlConfigurator.getPurchaseUrl(serverId ?? "", transactionID: purchase.transactionId)
+        self.getIdFromRoAServer(url: url) { (result: Result<(String,String), Error>) in
+            switch result {
+            case .success(let success):
+                testingPrint("[RoA Tracker server]: Sent purchase responce \(success.1)")
+            case .failure(let err):
+                testingPrint("[RoA Tracker server]: Sent purchase error \(err.localizedDescription)")
+            }
+        }
     }
     
     public func install() {
-  
+        
     }
     
 }

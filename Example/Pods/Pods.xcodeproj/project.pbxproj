@@ -198,6 +198,8 @@
 		C16B5601231EB6FE00105F6B /* RoATrackerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */; };
 		C16B5602231EB70300105F6B /* RoATrackerManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */; };
 		C16B5603231EB70500105F6B /* DeeplinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */; };
+		C194A32D2321413100CC9AAF /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C194A32C2321413100CC9AAF /* EventsList.swift */; };
+		C194A32E23214A0800CC9AAF /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C194A32C2321413100CC9AAF /* EventsList.swift */; };
 		C2542CADEC66031666DA4B3B67504109 /* FBSDKImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 51B9EB7990655CD0D46DACC0696A0B9B /* FBSDKImageDownloader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C2D1D257E369924257BF408127593A71 /* FBSDKLogo.h in Headers */ = {isa = PBXBuildFile; fileRef = BEF1FC9CABB6F45EBCE551283DF43EA9 /* FBSDKLogo.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C4C965F73532F1051C18F11499AFB175 /* FBSDKContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 20FBEA386FAE58B82E53445CE4B1150C /* FBSDKContainerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -504,6 +506,7 @@
 		C03043A01362E49EC9B9C2D63B822BE7 /* FBSDKErrorRecoveryConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKErrorRecoveryConfiguration.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorRecoveryConfiguration.m; sourceTree = "<group>"; };
 		C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkType.swift; sourceTree = "<group>"; };
 		C16B5600231EB6FE00105F6B /* RoATrackerManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoATrackerManagerDelegate.swift; sourceTree = "<group>"; };
+		C194A32C2321413100CC9AAF /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
 		C31D7DCD2C829447FE74C2640CAC79E5 /* FBSDKBridgeAPIResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIResponse.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.h; sourceTree = "<group>"; };
 		C5B5F75E011A276EC59516563B6145B6 /* RoAAFTracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RoAAFTracker.swift; sourceTree = "<group>"; };
 		C5F27E0034D2A4B6917239DECE68C1E9 /* FBSDKTypeUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTypeUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKTypeUtility.h; sourceTree = "<group>"; };
@@ -801,6 +804,7 @@
 				81324194D618D0132F4D2C77AC16A75A /* PurchaseModel.swift */,
 				353FDE94A6F7DBD07DA01FA2C262DB6E /* RoAServerResponse.swift */,
 				C16B55FE231EB6EB00105F6B /* DeeplinkType.swift */,
+				C194A32C2321413100CC9AAF /* EventsList.swift */,
 			);
 			name = Models;
 			path = RoATracker/Classes/TrackerManager/Models;
@@ -1370,6 +1374,7 @@
 				4A995EE065ED611EF6C04D808D8F82C7 /* RoAServerTracker.swift in Sources */,
 				499569FBEAC6DC475957379922153E67 /* RoATracker-dummy.m in Sources */,
 				877E101B508F6B70078ABF2647B442C9 /* RoATrackerManager.swift in Sources */,
+				C194A32E23214A0800CC9AAF /* EventsList.swift in Sources */,
 				CB0C3869C5BCE3F0EBE26E30790D5C07 /* TrackerManagerProtocol.swift in Sources */,
 				C16B5602231EB70300105F6B /* RoATrackerManagerDelegate.swift in Sources */,
 				20D9B9101F933E8D976FFE1C90A2B62C /* TrackerProtocol.swift in Sources */,
@@ -1450,6 +1455,7 @@
 				DA75B58F8A1804DE0F9953FADEF812C1 /* FBSDKMonotonicTime.m in Sources */,
 				F5398D3782B29236D8C5A53336C9F2B9 /* FBSDKPaymentObserver.m in Sources */,
 				4342E6EECBB0CB2AACA8991E2D33572A /* FBSDKProfile.m in Sources */,
+				C194A32D2321413100CC9AAF /* EventsList.swift in Sources */,
 				3301259F5F2135AA2FFA2198074D06BE /* FBSDKProfilePictureView.m in Sources */,
 				E501A124E8846D0BD7D3CD78B076D770 /* FBSDKRestrictiveDataFilterManager.m in Sources */,
 				82E4868F63CD0DEFD944FA09335354A7 /* FBSDKServerConfiguration.m in Sources */,

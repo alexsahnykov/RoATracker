@@ -86,8 +86,9 @@ struct RoAExtInfoConfigurator {
     private let timeZone = NSTimeZone.system.identifier
     
     public func getExtInfo() -> String {
-        testingPrint(extInfoParamets.joined(separator: ","))
-        return extInfoParamets.joined(separator: ",")
+        let getExtInfo = extInfoParamets.joined(separator: ",")
+        testingPrint("[RoA Tracker server]: build extInfo \(getExtInfo)")
+        return getExtInfo
     }
     
     public init() {

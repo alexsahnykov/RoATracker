@@ -14,7 +14,7 @@ public struct RoAServerTrackerURLConfigurator {
         }
     }
     
-    var components: URLComponents = {
+   private var components: URLComponents = {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "trk.questmedia.ru"
@@ -42,11 +42,11 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "original_transaction_id", value: transactionID),
             URLQueryItem(name: "bundle_id", value: bundle),
         ]
-       return components.url
+        return components.url
     }
     
     private var facebookUrl: URL? {
-        var components = URLComponents()
+        var components = self.components
         components.queryItems = [
             URLQueryItem(name: "deeplink", value: deeplink),
             URLQueryItem(name: "mobile_cookie", value: mobileCooke),
@@ -59,7 +59,7 @@ public struct RoAServerTrackerURLConfigurator {
     }
     
     private var appsflyerUrl: URL? {
-        var components = URLComponents()
+        var components = self.components
         components.queryItems = [
             URLQueryItem(name: "deeplink", value: deeplink),
             URLQueryItem(name: "adset", value: "adset"),

@@ -18,7 +18,11 @@ public class RoATrackerManager: NSObject {
 }
 
 extension RoATrackerManager: RoATracker {
-
+   
+    public func event(_ event: EventList) {
+        trackers.forEach {$0.event(event)}
+    }
+    
     public func install() {
         trackers.forEach {$0.install()}
     }
@@ -71,12 +75,12 @@ extension RoATrackerManager: UIApplicationDelegate  {
         return true
     }
     
-   public func applicationDidBecomeActive(_ application: UIApplication) {
+    public func applicationDidBecomeActive(_ application: UIApplication) {
         trackers.forEach {$0.applicationDidBecomeActive?(application)
         }
     }
     
-   public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         trackers.forEach {_ = $0.application?(app, open: url, options: options)}
         return true
     }
@@ -86,8 +90,9 @@ extension RoATrackerManager: UIApplicationDelegate  {
 extension RoATrackerManager: RoATrackerManagerDelegate {
     
     public func getDeeplink(_ type: DeeplinkType, deeplink: [AnyHashable : Any]) {
-            guard let tracker = self.get(RoAServerTracker.self) as? RoAServerTracker else {return}
+        guard let tracker = self.get(RoAServerTracker.self) as? RoAServerTracker else {return}
         tracker.getServerId(type)
     }
- 
+    
 }
+
