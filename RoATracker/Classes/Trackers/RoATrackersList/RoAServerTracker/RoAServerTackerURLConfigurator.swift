@@ -42,6 +42,7 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "original_transaction_id", value: transactionID),
             URLQueryItem(name: "bundle_id", value: bundle),
         ]
+        testingPrint("[RoA Tracker server]: build server purchase url \(String(describing: components.url))")
         return components.url
     }
     
@@ -54,7 +55,9 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "bundle_id", value: Bundle.main.bundleIdentifier),
             URLQueryItem(name: "fb_bundle_version", value: getFBVersion()),
             URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())
+            
         ]
+         testingPrint("[RoA Tracker server]: build facebook url \(String(describing: components.url))")
         return components.url
     }
     
@@ -69,6 +72,7 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "fb_bundle_version", value: getFBVersion()),
             URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())
         ]
+        testingPrint("[RoA Tracker server]: build appsflyer url \(String(describing: components.url))")
         return components.url
     }
     
