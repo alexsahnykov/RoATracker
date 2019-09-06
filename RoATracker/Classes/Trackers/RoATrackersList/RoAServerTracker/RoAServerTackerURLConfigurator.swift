@@ -10,7 +10,7 @@ public struct RoAServerTrackerURLConfigurator {
     
     var deeplink: String? {
         willSet {
-            testingPrint("Set new deeplink: \(newValue ?? "No new value")")
+            testingPrint("[RoA Tracker server] Set new deeplink: \(newValue ?? "No new value")")
         }
     }
     
@@ -27,8 +27,10 @@ public struct RoAServerTrackerURLConfigurator {
     public  func getInstallUrl(_ deeplinkType: DeeplinkType) -> URL? {
         switch deeplinkType {
         case .appsflyer:
+            testingPrint("[RoA Tracker server]: build appsflyer url \(String(describing: components.url))")
             return appsflyerUrl
         case .facebook:
+            testingPrint("[RoA Tracker server]: build facebook url \(String(describing: components.url))")
             return facebookUrl
         }
     }
@@ -54,10 +56,7 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "extinfo", value: extinfo.getExtInfo()),
             URLQueryItem(name: "bundle_id", value: Bundle.main.bundleIdentifier),
             URLQueryItem(name: "fb_bundle_version", value: getFBVersion()),
-            URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())
-            
-        ]
-         testingPrint("[RoA Tracker server]: build facebook url \(String(describing: components.url))")
+            URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())]
         return components.url
     }
     
@@ -70,9 +69,7 @@ public struct RoAServerTrackerURLConfigurator {
             URLQueryItem(name: "extinfo", value: extinfo.getExtInfo()),
             URLQueryItem(name: "bundle_id", value: Bundle.main.bundleIdentifier),
             URLQueryItem(name: "fb_bundle_version", value: getFBVersion()),
-            URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())
-        ]
-        testingPrint("[RoA Tracker server]: build appsflyer url \(String(describing: components.url))")
+            URLQueryItem(name: "fb_bundle_short_version", value: getFBShortVertion())]
         return components.url
     }
     
@@ -89,7 +86,7 @@ public struct RoAServerTrackerURLConfigurator {
         return version
     }
     
-    public var mobileCooke: String = {
+    private var mobileCooke: String = {
         var status = ASIdentifierManager.shared().advertisingIdentifier
         return status.uuidString
     }()

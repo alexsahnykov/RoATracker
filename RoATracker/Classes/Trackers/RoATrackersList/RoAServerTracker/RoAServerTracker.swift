@@ -9,11 +9,11 @@ public class RoAServerTracker: NSObject {
     
     public weak var delegate: RoATrackerManagerDelegate?
     
-    public var serverId: String?
+    private var serverId: String?
     
     private var urlConfigurator: RoAServerTrackerURLConfigurator
     
-    public func getServerId(_ type: DeeplinkType) {
+    public func getServerId(_ type: DeeplinkType, deeplinkL: [String: Any]) {
         guard serverId == nil else {
             testingPrint("[RoA Tracker server]: already have id")
             return
